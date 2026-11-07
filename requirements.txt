@@ -1,0 +1,9 @@
+# Glass Defect Detection API – Python dependencies
+# Install with: pip install -r requirements.txt
+
+fastapi>=0.111.0
+uvicorn[standard]>=0.29.0
+ultralytics>=8.2.0          # YOLOv8
+opencv-python-headless>=4.9.0
+numpy>=1.26.0
+python-multipart>=0.0.9     # Required by FastAPI for file uploads

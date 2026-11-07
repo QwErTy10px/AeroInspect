@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+node_modules/
+frontend/build/
+output.jpg
+processed_video.mp4
+detection_report.json
+Glass defect detection.v1i.yolov8/
+*.zip
+runs/
+!runs/detect/glass_defect-2/weights/best.pt

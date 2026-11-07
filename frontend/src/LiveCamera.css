@@ -1,0 +1,127 @@
+/* LiveCamera.css — fixed video + overlay architecture */
+
+.live-camera-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+/* ── Controls ──────────────────────────────────────────────────── */
+.live-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.live-btn-row {
+  display: flex;
+  gap: 8px;
+}
+
+.live-btn-row .btn-run {
+  flex: 1;
+  animation: none;
+}
+
+.live-btn-off {
+  background: var(--c-card2) !important;
+  color: var(--c-text1) !important;
+  border: 1px solid var(--c-border) !important;
+  box-shadow: none !important;
+}
+
+.live-btn-stop {
+  background: var(--c-red-severe) !important;
+}
+
+/* ── Status pill ───────────────────────────────────────────────── */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid;
+  align-self: flex-start;
+  letter-spacing: 0.04em;
+}
+
+.pill-off       { background: rgba(79,79,81,0.5);     color: var(--c-text3);      border-color: var(--c-border); }
+.pill-live      { background: rgba(130,201,160,0.12); color: var(--c-ok);         border-color: var(--c-ok-bd); }
+.pill-detecting { background: rgba(239,68,68,0.14);   color: var(--c-red-severe); border-color: var(--c-red-bd); }
+
+/* ── Stats bar ─────────────────────────────────────────────────── */
+.live-stats {
+  display: flex;
+  gap: 8px;
+  background: var(--c-bg);
+  border: 1px solid var(--c-border);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.ls-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  gap: 2px;
+}
+
+.ls-val {
+  font-family: var(--mono);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--c-text1);
+  line-height: 1;
+}
+
+.ls-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--c-text3);
+}
+
+/* ── LIVE badge pulse ──────────────────────────────────────────── */
+.live-badge {
+  animation: livePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}
+
+/* ── Feed container: video base + canvas overlay ───────────────── */
+.live-feed-container {
+  position: relative;       /* anchor for the absolute canvas */
+  line-height: 0;           /* removes phantom gap below video */
+  background: #111013;
+  width: 100%;
+}
+
+/* The webcam video — always the base visible layer */
+.live-video {
+  display: block;
+  width: 100%;
+  max-height: 480px;
+  object-fit: contain;      /* preserve aspect ratio, no cropping */
+  /* NO z-index needed — natural stacking order puts canvas on top */
+}
+
+/* The bounding-box canvas — sits directly on top, FULLY TRANSPARENT */
+.live-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;     /* clicks pass through to video */
+  /* background is transparent by default — never set a background here */
+}
