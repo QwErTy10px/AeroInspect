@@ -15,7 +15,8 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import "./LiveCamera.css";
 
-const WS_URL           = "ws://localhost:8000/ws/live-detection";
+const WS_URL = (process.env.REACT_APP_API_URL || "http://localhost:8000")
+  .replace(/^http/, "ws") + "/ws/live-detection";
 const FRAME_INTERVAL   = 80;   // ms between frames sent (~12 fps)
 const JPEG_QUALITY     = 0.75;
 

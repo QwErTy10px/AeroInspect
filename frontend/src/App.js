@@ -4,7 +4,7 @@ import VideoDetection from "./VideoDetection";
 import LiveCamera from "./LiveCamera";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-const API_URL = "http://localhost:8000/detect";
+const API_URL = `${process.env.REACT_APP_API_URL || "http://localhost:8000"}/detect`;
 
 // ─── Severity → red-based color ───────────────────────────────────────────────
 function severityColor(severity) {
